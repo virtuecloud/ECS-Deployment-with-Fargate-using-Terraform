@@ -11,6 +11,10 @@
 
 Terraform module to deploy AWS ECS Fargate
 
+# Architecture Diagram
+![ECS_Architecture](https://user-images.githubusercontent.com/75137939/229099446-b36bdd97-b1dd-412d-8ba3-0899c1e367de.png)
+
+
 # Core Components
 
 ## AWS
