@@ -1,6 +1,13 @@
 # Terraform-ECS-module 
 Terraform module to deploy AWS ECS Fargate
 
+<h1 align="center"> Virtuecloud </h1> <br>
+<p align="center">
+  <a href="https://virtuecloud.io/">
+    <img alt="Virtuecloud" title="Virtuecloud" src="https://virtuecloud.io/assets/images/VitueCloud_Logo.png" width="450">
+  </a>
+</p>
+
 # Core Components
 
 ## AWS
