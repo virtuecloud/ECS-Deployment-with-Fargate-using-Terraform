@@ -11,5 +11,5 @@ variable "priv_subnet_ids" {}
 variable "cluster_arn" {}
 
 variable "internal" {}
-variable "image_name" {}
+# variable "image_name" {}
 

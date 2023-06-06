@@ -1,11 +1,11 @@
 resource "aws_ecs_task_definition" "example_task_def" {
-  depends_on = [aws_cloudwatch_log_group.example_cw_log_group]
+  # depends_on = [aws_cloudwatch_log_group.example_cw_log_group]
   family = var.ecs_service_name
   container_definitions = jsonencode(
 [
   {
     "name": "${var.ecs_service_name}",
-    "image": "${var.image_name}:latest",
+    "image": "${aws_ecr_repository.foo.repository_url}:latest",
     "essential": true,
     "portMappings": [
       {
@@ -27,8 +27,8 @@ resource "aws_ecs_task_definition" "example_task_def" {
 ] )
 
 
-  cpu = 512
-  memory = 1024
+  cpu = 1024
+  memory = 2048
   requires_compatibilities = ["FARGATE"]
   network_mode = "awsvpc"
   execution_role_arn = aws_iam_role.task_def_role.arn

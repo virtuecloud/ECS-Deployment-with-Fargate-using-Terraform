@@ -5,4 +5,4 @@ variable "containers" {
 }
 
 variable "cluster_name" {}
-variable "publicly_accessible"{}
+# variable "publicly_accessible"{}

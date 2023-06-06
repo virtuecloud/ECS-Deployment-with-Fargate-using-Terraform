@@ -1,7 +1,7 @@
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
-  name = "stage-vpc"
+  name = "intel-vpc"
   cidr = "10.0.0.0/16"
 
   azs             = ["us-east-1a", "us-east-1b"]
@@ -9,6 +9,7 @@ module "vpc" {
   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
 
   enable_nat_gateway = true
+  single_nat_gateway = true
   enable_vpn_gateway = true
   enable_dns_hostnames = true
   /* enable_dns_Support = true */
@@ -24,7 +25,7 @@ module "ecs-dev" {
    source = "./module"
    depends_on=[ aws_ecs_cluster.example_cluster ]
    for_each = var.containers
-   image_name = each.value.image_name
+  #  image_name = each.value.image_name
    container_name = each.value.container_name
    ecs_service_name = each.value.ecs_service_name 
    alb_name = each.value.alb_name
