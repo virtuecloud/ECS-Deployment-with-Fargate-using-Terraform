@@ -7,11 +7,11 @@ containers={
         # image_name = "image_name" 
         container_name = "sample-react-app-task"  # ignore
         ecs_service_name = "sample-react-app-service"
-        alb_name = "Intelera-alb"
+        alb_name = "test-alb"
         internal = false
         /* repository_name = "repo-name" */
         
-        container_port= 80 #eg-4000
+        container_port= 8080 #eg-4000
  
 
      }
