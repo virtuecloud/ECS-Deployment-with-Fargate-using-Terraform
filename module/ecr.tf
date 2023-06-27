@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "foo" {
-  name                 = "sample-react-intelera"
+  name                 = "${var.ecs_service_name}-repo"
   image_tag_mutability = "MUTABLE"
   force_delete = true
 
