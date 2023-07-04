@@ -33,7 +33,7 @@ _The following components are deployed:_
 
 ```hcl
 module "ecs-dev" {
-   source = "./module"
+   source = "git::https://github.com/virtuecloud/ECS-Deployment-with-Fargate-using-Terraform.git//module"
    depends_on=[ aws_ecs_cluster.example_cluster ]
    for_each = var.containers
    image_name = each.value.image_name
@@ -48,7 +48,7 @@ module "ecs-dev" {
    vpc_id = var.vpc_id
    pub_subnet_ids = var.pub_subnet_ids
    priv_subnet_ids = var.priv_subnet_ids
-   cluster_arn = aws_ecs_cluster.example_cluster.id
+   cluster_arn = aws_ecs_cluster.example_cluster.id  # Provide your exesting ECS cluster arn.
   
 
 }
