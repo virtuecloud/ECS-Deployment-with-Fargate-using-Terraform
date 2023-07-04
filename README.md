@@ -31,7 +31,7 @@ _The following components are deployed:_
 
 ## ECS Module
 
-```
+```hcl
 module "ecs-dev" {
    source = "./module"
    depends_on=[ aws_ecs_cluster.example_cluster ]
