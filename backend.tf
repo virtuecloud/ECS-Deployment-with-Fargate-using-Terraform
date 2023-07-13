@@ -1,6 +1,6 @@
 # terraform {
 #   backend "s3" {
-#     bucket = "intelera-infra-test-sparsh"
+#     bucket = "example-bucket-name"
 #     key    = "terraform.tfstate"
 #     region = "us-east-2"
 #   }
