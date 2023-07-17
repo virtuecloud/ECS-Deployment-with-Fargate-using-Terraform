@@ -18,7 +18,7 @@ Terraform module to deploy AWS ECS Fargate
 # Core Components
 
 ## AWS
-#### dada
+
 _The AWS infrastructure is setup using terraform in the ./terraform._
 
 _The following components are deployed:_
