@@ -1,11 +1,10 @@
-resource "aws_ecs_task_definition" "example_task_def" {
-  # depends_on = [aws_cloudwatch_log_group.example_cw_log_group]
+resource "aws_ecs_task_definition" "task_def" {
   family = var.ecs_service_name
   container_definitions = jsonencode(
 [
   {
     "name": "${var.ecs_service_name}",
-    "image": "${aws_ecr_repository.foo.repository_url}:latest",
+    "image": "${var.ecr_repo_uri}",
     "essential": true,
     "portMappings": [
       {
@@ -22,13 +21,14 @@ resource "aws_ecs_task_definition" "example_task_def" {
             "awslogs-stream-prefix": "ecs"
           }
         },
-      //  "environment": var.task_environment_variables == [] ? null : var.task_environment_variables
+      "environment": var.task_environment_variables == [] ? null : var.task_environment_variables
+      "secrets" : var.task_secrets_variables == [] ? null : var.task_secrets_variables
   }
 ] )
 
 
-  cpu = 1024
-  memory = 2048
+  cpu = var.allocate_cpus
+  memory = var.allocate_memory
   requires_compatibilities = ["FARGATE"]
   network_mode = "awsvpc"
   execution_role_arn = aws_iam_role.task_def_role.arn
@@ -36,7 +36,9 @@ resource "aws_ecs_task_definition" "example_task_def" {
   runtime_platform {
     operating_system_family = "LINUX"
   }
+  tags = var.tags
 }
+
 resource "aws_iam_role" "task_def_role" {
   name = "${var.ecs_service_name}_task_def_role"
   assume_role_policy = jsonencode({
@@ -52,7 +54,9 @@ resource "aws_iam_role" "task_def_role" {
       }
     ]
   })
+  tags = var.tags
 }
+
 resource "aws_iam_role_policy" "ecr-iam-policy" {
   name = "${var.ecs_service_name}_task_def_policy"
   role = aws_iam_role.task_def_role.id
@@ -79,6 +83,7 @@ resource "aws_iam_role_policy" "ecr-iam-policy" {
     ]
 })
 }
+
 resource "aws_iam_role_policy" "secret-manager" {
   name = "${var.ecs_service_name}_task_def_policy_secret_manager"
   role = aws_iam_role.task_def_role.id
@@ -111,4 +116,5 @@ resource "aws_iam_role_policy" "secret-manager" {
 
     ]
 })
+
 }
