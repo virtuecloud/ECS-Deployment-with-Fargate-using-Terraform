@@ -1,0 +1,60 @@
+# ==============================================================================
+# Terraform Git Ignore
+# ==============================================================================
+
+# Compiled provider binaries and downloaded module caches
+.terraform/
+**/.terraform/
+
+# Terraform state files (may contain sensitive passwords, keys, and environment details)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+*.tfstate.lock.info
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Variable files (contain sensitive deployment-specific values)
+# Commit terraform.tfvars.example instead
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+
+# Ignore override files (used for local custom overrides)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform CLI configuration
+.terraformrc
+terraform.rc
+
+# Terraform execution plan files
+*.tfplan
+tfplan
+
+# ==============================================================================
+# OS & Editor Artifacts
+# ==============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

@@ -11,6 +11,12 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
-  # optionally:
-  # profile = var.aws_profile
+
+  default_tags {
+    tags = {
+      resourceowner = "ankush.mishra"
+      Environment   = "dev"
+      Project       = "poc"
+    }
+  }
 }
