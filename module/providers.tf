@@ -9,6 +9,4 @@ terraform {
   }
 }
 
-# The module inherits the AWS provider configuration from the root module.
-# You may add aliases here if you need to target multiple AWS accounts/regions.
-provider "aws" {}
+

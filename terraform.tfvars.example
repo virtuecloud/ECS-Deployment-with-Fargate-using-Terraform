@@ -1,0 +1,35 @@
+aws_region   = "us-east-1"
+env          = "dev"
+cluster_name = "example-cluster"
+
+# Optional: If left empty, will automatically use the created ALB security group
+source_ecs_sg_id = ""
+
+services = {
+  sample-service-1 = {
+    internal                          = false
+    ecs_desired_count                 = 1
+    container_name                    = "sample-service-1"
+    ecs_service_name                  = "sample-service-1"
+    ecr_repo_uri                      = "public.ecr.aws/nginx/nginx:latest"
+    container_port                    = 80
+    allocate_cpus                     = 256
+    allocate_memory                   = 512
+    health_check_grace_period_seconds = 60
+    max_capacity                      = 2
+    min_capacity                      = 1
+    target_memory_utilization         = 80
+    target_cpu_utilization            = 80
+    envs = [
+      { "name" = "env", "value" = "dev" }
+    ]
+    secrets      = []
+    host         = "" # Leave empty for default forward, or specify "app.example.com"
+    listener_arn = ""
+    tags = {
+      application_name = "sample-service"
+      Environment      = "dev"
+      Project          = "poc"
+    }
+  }
+}
